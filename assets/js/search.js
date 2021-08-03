@@ -5,7 +5,7 @@ jQuery(document).ready(function(){
 	    {"column":"Language"	, values:[]}
 	    ];
 
-	var perpage = 50;
+	var perpage = 10;
 	var page = 1;
 
 	var dates = [];
@@ -45,7 +45,7 @@ jQuery(document).ready(function(){
 	
 	jQuery(document).on("click",".pager", function(e){
 	  page = jQuery(this).attr('rel');
-	  //showresults();
+	  showresults();
 	  e.preventDefault();
 	});		
 	/* end triggers */	 
@@ -192,12 +192,12 @@ jQuery(document).ready(function(){
 
 	function pagination(pages) {
 	  if(pages > 1) {
-	     var html = "<ul class='pagination'>";
+	     var html = "";
 	     for(var x=1;x<=pages;x++) { 
-	        if(x==page) { html += "<a href='#' class='pager' rel='"+x+"'><li class='selected'>"+x+"</li></a>"; }
-	        else { html += "<a href='#' class='pager' rel='"+x+"'><li>"+x+"</li></a>"; }
+	        if(x==page) { html += "<a href='#' class='pager selected' rel='"+x+"'>"+x+"</a>"; }
+	        else { html += "<a href='#' class='pager' rel='"+x+"'>"+x+"</a>"; }
 	     }
-	     html += "</ul>";
+
 	     return html;
 	  }
 	  else { return ""; }
@@ -224,6 +224,5 @@ jQuery(document).ready(function(){
 
 
 });
-
 
 
