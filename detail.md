@@ -90,7 +90,7 @@ function displayData(row) {
 }
 
 var id = getParameterByName('id');
-console.log(id);
+
 for(var x=0;x<=(colophons.length)-1;x++) {
   if(colophons[x].ID == id)  { 
   
