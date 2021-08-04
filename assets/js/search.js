@@ -1,11 +1,13 @@
 jQuery(document).ready(function(){
 
 	var filter_fields = [
-	    {"column":"Century"	, values:[]},
-	    {"column":"Language"	, values:[]}
+	    {"column":"Century"		, values:[]},
+	    {"column":"ManuscriptLanguage"	, values:[]},
+	    {"column":"HoldingInstitution"	, values:[]},
+	    {"column":"Type"			, values:[]}
 	    ];
 
-	var perpage = 10;
+	var perpage = 50;
 	var page = 1;
 
 	var dates = [];
@@ -25,8 +27,6 @@ jQuery(document).ready(function(){
 	    v.values = v.values.filter(onlyUnique).sort();
 	    populateFilter(v.column, v.values);
 	});
-
-	
 
 
 	/* triggers */
@@ -73,13 +73,13 @@ jQuery(document).ready(function(){
 	  if(active_filters.length > 0) {
 	     var eval_string = [];
 	     jQuery.each(active_filters, function(i,v){
-	        var s = v.value.split(":");
+	        var s = v.value.replace("_"," ").split(":");
 	        eval_string.push("val."+s[0]+" === '"+s[1]+"'");
-	        // this magic function does the filtering
-	     	//
-		
+	        
 	     });
 	     eval_string = eval_string.join(" && ");
+	     console.log(eval_string);
+	     // this magic function does the filtering
 	     results = jQuery.grep(csvdata, function(val) { return eval(eval_string); });
 	  }
 
@@ -135,6 +135,8 @@ jQuery(document).ready(function(){
 	 */
 	 
 	function populateFilter( select_id, array ) {
+	
+	  select_id = select_id.replace(" ","_");
 	
 	  jQuery.each(array, function(i,v){
 	    //jQuery("#"+select_id).append("<option value='"+v+"'>"+v+"</option>");

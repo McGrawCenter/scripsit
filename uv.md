@@ -1,13 +1,9 @@
 ---
-# Feel free to add content and custom Front Matter to this file.
-# To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
-
 layout: page
 ---
-
-<link rel="stylesheet" type="text/css" href="assets/js/uv/uv.css">
-<script src="assets/js/uv/lib/offline.js"></script>
-<script src="assets/js/uv/helpers.js"></script>
+<link rel="stylesheet" type="text/css" href="/scripsit/assets/js/uv/uv.css">
+<script src="/scripsit/assets/js/uv/lib/offline.js"></script>
+<script src="/scripsit/assets/js/uv/helpers.js"></script>
     
 <style>
         #uv {
@@ -45,4 +41,4 @@ layout: page
 
 </script>
 
-<script src="assets/js/uv/uv.js"></script>
+<script src="/scripsit/assets/js/uv/uv.js"></script>
