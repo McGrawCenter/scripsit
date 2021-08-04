@@ -37,7 +37,6 @@ font-weight: bold;
 
 <script>
     
-    	//var manifest = "//figgy.princeton.edu/concern/scanned_resources/929257b7-8410-4f61-a8d1-19f2c24b74dc/manifest?manifest=https://figgy.princeton.edu/concern/scanned_resources/929257b7-8410-4f61-a8d1-19f2c24b74dc/manifest";
     	var manifest = "https://iiif.wellcomecollection.org/presentation/v2/b18035723";
     
         var myUV;
@@ -50,8 +49,8 @@ font-weight: bold;
             }, new UV.URLDataProvider());
 
             myUV.on("created", function(obj) {
-                console.log('parsed metadata', myUV.extension.helper.manifest.getMetadata());
-                console.log('raw jsonld', myUV.extension.helper.manifest.__jsonld);
+                //console.log('parsed metadata', myUV.extension.helper.manifest.getMetadata());
+                //console.log('raw jsonld', myUV.extension.helper.manifest.__jsonld);
             });
 
         }, false);
@@ -79,24 +78,25 @@ function getParameterByName(name, url = window.location.href) {
 function displayData(row) {
 
     jQuery('.title').text(row.MS);
-    
     jQuery('tbody').empty();
 
     jQuery.each(row, function(i,v){
       if(i=="Link") { v = "<a href='"+v+"' target='_blank'>"+v+"</a>"; }
+      console.log(i,v);
+      if(i=="IIIF_Manifest" && v.includes('http')) { manifest = v; }
       var row = "<tr><td class='label'>"+i+"</td><td class='value'>"+v+"</td></tr>";
       jQuery('tbody').append(row);
     })
 }
 
+
+
+
 var id = getParameterByName('id');
 
 for(var x=0;x<=(colophons.length)-1;x++) {
   if(colophons[x].ID == id)  { 
-  
    displayData(colophons[x]);
-    
-
   }
 }
 </script>
