@@ -2,9 +2,9 @@
 layout: page
 ---
 
-<link rel="stylesheet" type="text/css" href="/scripsit/assets/js/uv/uv.css">
-<script src="/scripsit/assets/js/uv/lib/offline.js"></script>
-<script src="/scripsit/assets/js/uv/helpers.js"></script>
+<link rel="stylesheet" type="text/css" href="/scripsit/uv/uv.css">
+<script src="/scripsit/uv/lib/offline.js"></script>
+<script src="/scripsit/uv/helpers.js"></script>
 
 <style>
 label {
@@ -102,4 +102,4 @@ for(var x=0;x<=(colophons.length)-1;x++) {
 </script>
 
 
-<script src="/scripsit/assets/js/uv/uv.js"></script>
+<script src="/scripsit/uv/uv.js"></script>
