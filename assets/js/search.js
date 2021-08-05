@@ -1,36 +1,56 @@
 jQuery(document).ready(function(){
 
+
+
+
+
+
 	var filter_fields = [
-	    {"column":"Century"		, values:[]},
-	    {"column":"ManuscriptLanguage"	, values:[]},
-	    {"column":"HoldingInstitution"	, values:[]},
-	    {"column":"Type"			, values:[]}
+	    {"column":"DateAfter",		"type":"number", "operator":">=", values:[]},
+	    {"column":"DateBefore",		"type":"number", "operator":"<=", values:[]},
+	    {"column":"ManuscriptLanguage",	"type":"array",  "operator":"===", values:[]},
+	    {"column":"HoldingInstitution",	"type":"array",  "operator":"===", values:[]},
+	    {"column":"Type",			"type":"array",  "operator":"===", values:[]}
 	    ];
 
 	var perpage = 50;
 	var page = 1;
 
-	var dates = [];
-	var langs = [];
-	
-	
-	jQuery.each(filter_fields, function(i,v){
-	   v = {"title":v,"values":[]}
-	});
 
-	jQuery.each(csvdata, function(i,v){
-	  jQuery.each(filter_fields, function(j,w){
-	    w.values.push(v[w.column]); 
+	function populateFilter(column, type) {
+	  // column must match the ID of the select input or the div containing the checkboxes
+	
+	  var t = [];
+	  
+	  jQuery.each(csvdata, function(i,v){
+	      t.push(v[column]); 
 	  });
-	});
-	jQuery.each(filter_fields, function(i,v){
-	    v.values = v.values.filter(onlyUnique).sort();
-	    populateFilter(v.column, v.values);
-	});
+	  t = t.filter(onlyUnique).sort();
+	  
+	  if(type=="select") {
+	    jQuery.each(t, function(i,v){
+	      jQuery("#"+column).append("<option value='"+v+"'>"+v+"</option>");
+	    });
+	  }
+
+	  if(type=="checkboxes") {
+	    jQuery.each(t, function(i,v){
+	      jQuery("#"+column).append("<label><input type='checkbox' class='filter' value='"+v+"'/> "+v+"</label><br />");
+	    });
+	  }	   
+	}
+	
+	
+	populateFilter("ManuscriptLanguage","checkboxes");
+	populateFilter("HoldingInstitution","checkboxes");
 
 
-	/* triggers */
-	jQuery("#search-form").submit(function(e){ e.preventDefault(); });
+	/***
+	* triggers
+	******************************************************************/
+	jQuery("#searchform").submit(function(e){ 
+	   e.preventDefault();
+	});
 	 
 	 
 	jQuery("#search_go").click(function(e){
@@ -48,7 +68,11 @@ jQuery(document).ready(function(){
 	  showresults();
 	  e.preventDefault();
 	});		
-	/* end triggers */	 
+	
+	
+	/***
+	* end triggers
+	******************************************************************/	 
 	 
 	 
 	 
@@ -58,31 +82,53 @@ jQuery(document).ready(function(){
 	 showresults();
 	 
 	 
+	 function filterResults(results, column, operator) {
+	 
+	   var evalstr = "";
+	   
+	   var x = jQuery("#"+column+" .filter");
+	   
+	   if(x.length > 0) {
+	         var checked = jQuery("#"+column+" .filter:checked");
+	         if(checked.length > 0) {
+	           var e = [];
+	           jQuery.each(checked, function(i,v){
+	             e.push("val."+column+" "+operator+" '"+v.value+"'");
+	           });
+	           evalstr = e.join(" || ");
+	         }
+	         else {
+	           return results;
+	         }
+	   }
+	   else { 
+	       var value = jQuery("#"+column).val();
+	       if(!value) { 
+	         return results;
+	        }
+	       else {
+	         var evalstr = "val."+column+" "+operator+" "+value;   
+	       }  
+	   }
+	   results = jQuery.grep(results, function(val) { return eval(evalstr); });
+	   return results;
+	 }
+
+
 
 
 
 	function showresults() {
 	
+
 	  var r = [];
 	  
 	  var results = csvdata;
 	  
-	  var active_filters = jQuery(".filter:checked");
-	  
-	  
-	  if(active_filters.length > 0) {
-	     var eval_string = [];
-	     jQuery.each(active_filters, function(i,v){
-	        var s = v.value.replace("_"," ").split(":");
-	        eval_string.push("val."+s[0]+" === '"+s[1]+"'");
-	        
-	     });
-	     eval_string = eval_string.join(" && ");
-	     console.log(eval_string);
-	     // this magic function does the filtering
-	     results = jQuery.grep(csvdata, function(val) { return eval(eval_string); });
-	  }
-
+	  results = filterResults(results, "DateAfter", ">=");
+	  results = filterResults(results, "DateBefore", "<=");
+	  results = filterResults(results, "ManuscriptLanguage", "===");
+	  results = filterResults(results, "HoldingInstitution", "===");
 	  displaySearchResults(results, csvdata); // We'll write this in the next section
 
 	}
@@ -91,59 +137,6 @@ jQuery(document).ready(function(){
 
 
 
-
-
-	 
-	 /*
-	function showresults() {
-	
-	  var r = [];
-	  
-
-	  console.log(filters);
-	  
-	  jQuery.each(csvdata, function(i,v){
-	    
-	    jQuery.each(filters, function(ii,vv){
-	      var f = vv.field;
-	      if(v[f] == vv.value) { r.push(v); }
-	    })
-	  });
-
-	  
-	  var results = csvdata;
-	  
-	  if(filters.length > 0) {
-	     jQuery.each(filters, function(i,val){
-	     
-	     
-	     	results = jQuery.grep(csvdata, function(v) {
-		    //return val.field === val.value;
-		    return v[val.field] === val.value;
-		});
-		
-		console.log(results);
-		
-	     });
-
-	  }
-	  console.log(results);
-
-	  displaySearchResults(results, csvdata); // We'll write this in the next section
-
-	}
-	 */
-	 
-	function populateFilter( select_id, array ) {
-	
-	  select_id = select_id.replace(" ","_");
-	
-	  jQuery.each(array, function(i,v){
-	    //jQuery("#"+select_id).append("<option value='"+v+"'>"+v+"</option>");
-	    jQuery("#"+select_id).append("<label><input type='checkbox' class='filter' name='select_id[]' value='"+select_id+":"+v+"'/> "+v+"</label><br />");
-	  });	
-	  return true;
-	}
 	 
 	/****
 	* reduce array to only unique value
@@ -222,6 +215,56 @@ jQuery(document).ready(function(){
 	});
 });
 */
+
+
+	  /***
+	  * Range slider
+	  ******************************/
+
+	  $( function() {
+	    $( "#slider-range" ).slider({
+	      range: true,
+	      min: 400,
+	      max: 1800,
+	      values: [ 400, 1800 ],
+	      slide: function( event, ui ) {
+		$( "#amount" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+		$( "#DateAfter" ).val( ui.values[ 0 ] );
+		$( "#DateBefore" ).val( ui.values[ 1 ] );
+		showresults();
+	      }
+	    });
+	    $( "#amount" ).val( $( "#slider-range" ).slider( "values", 0 ) +
+	      " - " + $( "#slider-range" ).slider( "values", 1 ) );
+	  } );
+
+
+
+
+
+
+	(function($){
+	    jQuery.fn.serializeObject = function() {
+		var o = {};
+		var a = this.serializeArray();
+
+		jQuery.each(a, function() {
+		    this.value = encodeURIComponent(this.value);
+
+		    if (o[this.name] !== undefined) {
+		        if (!o[this.name].push) {
+		            o[this.name] = [o[this.name]];
+		        }
+		        o[this.name].push(this.value || '');
+		    } else {
+		        o[this.name] = this.value || '';
+		    }
+		});
+		return JSON.parse(JSON.stringify(o));
+	    };
+	})(jQuery);
+
+
 
 
 

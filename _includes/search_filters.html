@@ -1,74 +1,22 @@
-<div class="widget">
+<form id="searchform">
 
-<label for="date-from">Date from</label>
-  <input type="range" min="400" max="1900" value="50" class="slider" id="date-from">
-</div>
+<p>
+  <label for="amount">Date range:</label>
+  <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+</p>
+<div id="slider-range"></div>
 
-<div class="widget">
-<label for="date-before">Date to</label>
-  <input type="range" min="400" max="1900" value="50" class="slider" id="date-from">
-</div>
+<input type="hidden" id="DateAfter" class='filter' name="DateAfter" />
+<input type="hidden" id="DateBefore" class='filter' name="DateAfter" />
 
-<div class="widget">
-<label for="date-from">Date from</label>
-<select id="date-from">
-  <option></option>
-  <option value="5th century">5th century</option>
-  <option value="6th century">6th century</option>
-  <option value="7th century">7th century</option>
-  <option value="8th century">8th century</option>
-  <option value="9th century">9th century</option>
-  <option value="10th century">10th century</option>
-  <option value="11th century">11th century</option>
-  <option value="12th century">12th century</option>
-  <option value="13th century">13th century</option>
-  <option value="14th century">14th century</option>
-  <option value="15th century">15th century</option>
-  <option value="16th century">16th century</option>
-  <option value="17th century">17th century</option>
-  <option value="18th century">18th century</option>  
-</select>
-</div>
-<div class="widget">
-<label for="date-from">Date to</label>
-<select id="date-from">
-  <option></option>
-  <option value="5th century">5th century</option>
-  <option value="6th century">6th century</option>
-  <option value="7th century">7th century</option>
-  <option value="8th century">8th century</option>
-  <option value="9th century">9th century</option>
-  <option value="10th century">10th century</option>
-  <option value="11th century">11th century</option>
-  <option value="12th century">12th century</option>
-  <option value="13th century">13th century</option>
-  <option value="14th century">14th century</option>
-  <option value="15th century">15th century</option>
-  <option value="16th century">16th century</option>
-  <option value="17th century">17th century</option>
-  <option value="18th century">18th century</option>  
-</select>
-</div>
-
-<details>
-    <summary>Manuscript Language</summary>
-    <div id="ManuscriptLanguage"></div>
-</details>
-
-<!--
 <div class="widget">
   <h3 style="margin-bottom:0px;margin-top:3%;">Manuscript Language</h3>
-  <div class='filter-widget'>
-    <div id="ManuscriptLanguage"></div>
-  </div>
+  <div id="ManuscriptLanguage"></div>
 </div>
--->
 
 <div class="widget">
   <h3 style="margin-bottom:0px;margin-top:3%;">Geography of production</h3>
-  <div class='filter-widget'>
-    <div id="Language"></div>
-  </div>
+  <div id="Language"></div>
 </div>
 
 <div class="widget">
@@ -78,21 +26,14 @@
   </div>
 </div>
 
-
-<div class="widget">
-  <h3 style="margin-bottom:0px;margin-top:3%;">Type of manuscript (text genre)</h3>
-  <div class='filter-widget'>
-    <div id="Type"></div>
-  </div>
-</div>
-
-
 <!--
 <div class="widget">
-
-<h3 style="margin-bottom:0px;margin-top:0px;">Date</h3>
-<div class='filter-widget'>
-<div id="Century"></div>
-</div>
+  <h3 style="margin-bottom:0px;margin-top:3%;">Type of manuscript (text genre)</h3>
+  <div id="Type"></div>
 </div>
 -->
+
+<input type="submit"/>
+
+</form>
+
