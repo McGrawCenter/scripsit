@@ -43,28 +43,6 @@ font-weight: bold;
 			<script type="text/javascript" id="embedUV" src="https://universalviewer.io/uv/lib/embed.js"></script>
 
 
-			<script>
-			    
-			        var manifest = null;
-			    
-				var myUV;
-
-				window.addEventListener('uvLoaded', function (e) {
-
-				    myUV = createUV('#uv', {
-					iiifResourceUri: manifest,
-					configUri: '../uv-config.json'
-				    }, new UV.URLDataProvider());
-
-				    myUV.on("created", function(obj) {
-					//console.log('parsed metadata', myUV.extension.helper.manifest.getMetadata());
-					//console.log('raw jsonld', myUV.extension.helper.manifest.__jsonld);
-				    });
-
-				}, false);
-
-			</script>
-
 
 
 			<!-- end UV -->
