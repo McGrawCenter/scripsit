@@ -12,7 +12,7 @@ layout: newdefault
             <div class="row">
  
                 <div class="col-lg-12">
-                    <h2 class="section-heading">About</h2>
+                    <h2 class="section-heading">Contact</h2>
 		     <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ac risus scelerisque, volutpat diam sed, molestie nibh. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis varius blandit arcu, non malesuada mauris varius eget. Aliquam a nisi ullamcorper, iaculis odio in, eleifend eros. Fusce vitae semper sapien. Ut at congue urna, quis finibus tellus. Nullam in lacus est. Praesent sed urna eget sem dignissim euismod.</p>
 
 <p>Sed pretium aliquam neque vel gravida. Nunc nec ligula consectetur, lacinia tortor vel, pulvinar libero. Ut sed sodales ante, quis cursus orci. Praesent vitae dapibus leo. Suspendisse sagittis quis mi vitae imperdiet. Donec nisi nisi, blandit nec erat vitae, rhoncus iaculis ligula. Phasellus et eros luctus, maximus nulla id, rutrum mi. Maecenas egestas nulla sit amet odio pretium pellentesque.</p>

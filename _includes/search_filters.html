@@ -1,26 +1,32 @@
 <form id="searchform">
 
-<p>
-  <label for="amount">Date range:</label>
-  <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
-</p>
-<div id="slider-range"></div>
 
-<input type="hidden" id="DateAfter" class='filter' name="DateAfter" />
-<input type="hidden" id="DateBefore" class='filter' name="DateAfter" />
+
 
 <div class="widget">
-  <h3 style="margin-bottom:0px;margin-top:3%;">Manuscript Language</h3>
+  <h3 style="margin-bottom:0px;margin-top:3%;">Date</h3>
+	<p>
+	  <label for="amount">Date range:</label>
+	  <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+	</p>
+	<div id="slider-range"></div>
+
+	<input type="hidden" id="DateAfter" class='filter' name="DateAfter" />
+	<input type="hidden" id="DateBefore" class='filter' name="DateAfter" />
+</div>
+
+<div class="widget">
+  <h3 style="margin-bottom:0px;margin-top:3%;">Language</h3>
   <div id="ManuscriptLanguage"></div>
 </div>
 
 <div class="widget">
-  <h3 style="margin-bottom:0px;margin-top:3%;">Geography of production</h3>
+  <h3 style="margin-bottom:0px;margin-top:3%;">Geography</h3>
   <div id="Language"></div>
 </div>
 
 <div class="widget">
-  <h3 style="margin-bottom:0px;margin-top:3%;">Holding institution</h3>
+  <h3 style="margin-bottom:0px;margin-top:3%;">Institution</h3>
   <div class='filter-widget'>
     <div id="HoldingInstitution"></div>
   </div>

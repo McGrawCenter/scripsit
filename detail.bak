@@ -2,7 +2,9 @@
 layout: newdefault
 ---
 
-
+<link href="/uv/uv.css" rel="stylesheet" type="text/css">
+<script src="/uv/lib/offline.js"></script>
+<script src="/uv/helpers.js"></script>
 
 <style>
 label {
@@ -24,28 +26,26 @@ font-weight: bold;
  
                 <div class="col-lg-12">
                     
-			<table id="details">
-			  <tbody></tbody>
+			<table>
+			<tbody></tbody>
 			</table>
 			
 			
 			<!-- start UV -->
 
 			<style>
-				.uv {
-				    width: 100%;
+				#uv {
+				    width: 800px;
 				    height: 600px;
-				    display:none;
 				}
 			</style>
 
-			<div class="uv" data-locale="en-GB:English (GB),cy-GB:Cymraeg" data-config="/config.json" data-uri="http://wellcomelibrary.org/iiif/b18035723/manifest" data-collectionindex="0" data-manifestindex="0" data-sequenceindex="0" data-canvasindex="0"></div>
-			<script type="text/javascript" id="embedUV" src="http://universalviewer.io/uv/lib/embed.js"></script>
+			<div class="uv" data-sequenceindex="0" data-canvasindex="0"></div>
 
 
 			<script>
 			    
-			    	var manifest = null;
+			    	var manifest = "https://iiif.wellcomecollection.org/presentation/v2/b18035723";
 			    
 				var myUV;
 
@@ -97,39 +97,27 @@ function displayData(row) {
 
     jQuery.each(row, function(i,v){
       if(i=="Link") { v = "<a href='"+v+"' target='_blank'>"+v+"</a>"; }
-
-      if(i=="IIIF_Manifest" && v.includes('http')) { 
-         manifest = v;
-       }
-      var row = "<tr><td class='details-label'>"+i+"</td><td class='details-value'>"+v+"</td></tr>";
+      //console.log(i,v);
+      if(i=="IIIF_Manifest" && v.includes('http')) { manifest = v; }
+      var row = "<tr><td class='label'>"+i+"</td><td class='value'>"+v+"</td></tr>";
       jQuery('tbody').append(row);
     })
 }
 
 
-function displayUV(){
-
-}
 
 
 var id = getParameterByName('id');
 
 for(var x=0;x<=(colophons.length)-1;x++) {
   if(colophons[x].ID == id)  { 
-  
    displayData(colophons[x]);
-   
-   if(manifest!=null) { 
-     var viewer = jQuery('.uv');
-     viewer.attr('data-uri', manifest);
-     viewer.show();
-   }
-
   }
 }
 </script>
 
 
+<script src="/uv/uv.js"></script>
 
 
 
