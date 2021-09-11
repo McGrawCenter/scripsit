@@ -42,7 +42,7 @@ font-weight: bold;
 			<div class="uv" data-locale="en-GB:English (GB),cy-GB:Cymraeg" data-config="/config.json" data-uri="https://wellcomelibrary.org/iiif/b18035723/manifest" data-collectionindex="0" data-manifestindex="0" data-sequenceindex="0" data-canvasindex="0"></div>
 			<script type="text/javascript" id="embedUV" src="https://universalviewer.io/uv/lib/embed.js"></script>
 
-
+<div class="uv" data-locale="en-GB:English (GB),cy-GB:Cymraeg" data-config="/config.json" data-uri="https://damsssl.llgc.org.uk/iiif/2.0/4389767/manifest.json" data-collectionindex="0" data-manifestindex="0" data-sequenceindex="0" data-canvasindex="0" data-xywh="-2350,-227,8778,4533" data-rotation="0" style="width:560px; height:420px; background-color: #000"></div><script type="text/javascript" id="embedUV" src="https://universalviewer.io/vendor/uv/lib/embed.js"></script><script type="text/javascript">/* wordpress fix */</script>
 
 
 			<!-- end UV -->
