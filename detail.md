@@ -98,6 +98,7 @@ for(var x=0;x<=(colophons.length)-1;x++) {
    displayData(colophons[x]);
    
    if(manifest!=null) { 
+     console.log(manifest);
      var viewer = jQuery('.uv');
      viewer.attr('data-uri', manifest);
      viewer.show();
