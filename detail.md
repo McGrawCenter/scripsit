@@ -14,8 +14,9 @@ layout: newdefault
 			<table id="details">
 			  <tbody></tbody>
 			</table>
-			
-<div class="uv" data-locale="en-GB:English (GB),cy-GB:Cymraeg" data-config="/config.json" data-uri="http://wellcomelibrary.org/iiif/collection/b20417081" data-collectionindex="0" data-manifestindex="0" data-sequenceindex="0" data-canvasindex="0" data-xywh="-3559,-207,9613,4134" data-rotation="0" style="width:800px; height:600px; background-color: #000"></div><script type="text/javascript" id="embedUV" src="https://universalviewer.io/vendor/uv/lib/embed.js"></script><script type="text/javascript">/* wordpress fix */</script>
+
+
+<iframe id="uvframe" style="width:100%;height:800px;" frameborder='0' src="http://universalviewer.io/uv.html?manifest=http://wellcomelibrary.org/iiif/collection/b20417081"></iframe>
 
 
                 </div>
@@ -66,13 +67,10 @@ for(var x=0;x<=(colophons.length)-1;x++) {
   
    displayData(colophons[x]);
    
-   /*
    if(manifest!=null) { 
-     var viewer = jQuery('.uv');
-     viewer.attr('data-uri', manifest);
-     viewer.show();
+     jQuery("#uvframe").attr('src', "https://universalviewer.io/uv.html?manifest="+manifest);
    }
-   */
+
 
   }
 }
