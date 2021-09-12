@@ -219,14 +219,20 @@ fieldset[disabled] .btn-xl.active {
 
 .navbar-default .navbar-brand {
     font-family: "Montserrat","Helvetica Neue",Helvetica,Arial,cursive;
-    color: #{{ site.data.template.color.primary }};
+    color: #FFFFFF;
+    font-weight:bold;
+}
+
+.navbar-shrink .navbar-brand {
+    color: #FFFFFF;
+    text-shadow: none;
 }
 
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus,
 .navbar-default .navbar-brand:active,
 .navbar-default .navbar-brand.active {
-    color: #{{ site.data.template.color.secondary }};
+    color: #333333;
 }
 
 .navbar-default .navbar-collapse {
@@ -278,7 +284,7 @@ fieldset[disabled] .btn-xl.active {
 
 @media(min-width:768px) {
     .navbar-default {
-        padding: 25px 0;
+        padding: 5px 0;
         border: 0;
         background-color: transparent;
         -webkit-transition: padding .3s;
