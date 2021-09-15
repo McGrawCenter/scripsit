@@ -10,6 +10,7 @@ jQuery(document).ready(function(){
 	    {"column":"DateBefore",		"type":"number", "operator":"<=", values:[]},
 	    {"column":"ManuscriptLanguage",	"type":"array",  "operator":"===", values:[]},
 	    {"column":"HoldingInstitution",	"type":"array",  "operator":"===", values:[]},
+	    {"column":"Location",		"type":"array",  "operator":"===", values:[]},
 	    {"column":"Type",			"type":"array",  "operator":"===", values:[]}
 	    ];
 
@@ -23,8 +24,17 @@ jQuery(document).ready(function(){
 	  var t = [];
 	  
 	  jQuery.each(csvdata, function(i,v){
-	      t.push(v[column]); 
-	  });
+	      if(v[column] != null) {
+		      if(v[column].indexOf('|')) { 
+			var parts = v[column].split('|');
+			jQuery.each(parts,function(ii,vv){
+			  t.push(vv);
+			});
+		      }
+		      else { t.push(v[column]); }
+	      }
+	      });
+
 	  t = t.filter(onlyUnique).sort();
 	  
 	  if(type=="select") {
@@ -43,6 +53,7 @@ jQuery(document).ready(function(){
 	
 	populateFilter("ManuscriptLanguage","checkboxes");
 	populateFilter("HoldingInstitution","checkboxes");
+	populateFilter("Location","checkboxes");
 
 
 	/***

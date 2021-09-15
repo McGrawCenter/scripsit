@@ -47,7 +47,9 @@ tr:nth-child(2n) {
 }
 
 
-
+.widget {
+  margin-bottom: 12%;
+}
 
 
 
